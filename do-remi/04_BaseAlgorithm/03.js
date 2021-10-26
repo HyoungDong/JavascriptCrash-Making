@@ -5,5 +5,15 @@ const input = require('fs')
   .split(require('os').EOL);
 
 const solution = str => {
-  return '';
+  let left = 0;
+  let result = true;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '(') left++;
+    if (str[i] === ')') left > 0 ? left-- : (result = false);
+    if (!result) break;
+  }
+  if (left > 0) result = false;
+
+  return result;
 };
+input.forEach(elem => console.log(solution(elem)));
